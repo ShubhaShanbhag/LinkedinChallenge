@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}<!>
+{% block title %}Welcome{% endblock %}<!>
+{% block content %}
+<div class="form-control">
+  <h4 class="display-5 mb-3">LinkedIn Members</h2>
+
+  <div class="list-group w-50">
+    {% for member in members %}
+    <div>
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+          <h3>Name: {{ member.user.username }}</h2>
+          <p>Job title: {{ member.jobtitle }}</p>
+      </div>
+      <a href="{% url 'core:profile' member.user.id %}" type="submit" class="btn btn-primary mt-3 mb-3">View Profile</a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

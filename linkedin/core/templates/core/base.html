@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    ></script>
+    <title>{% block title %}{% endblock %} | LinkedIn</title>
+  </head>
+
+  <body>
+    <div class="flex-1">
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a href="/" class="navbar-brand">Linkedin</a>
+          {% if user.is_authenticated %} 
+               {% if 'login' not in request.path and 'signup' not in request.path %}
+                 <div>
+                   <p>Welcome, {{ user.username }}!</p>
+                </div>
+
+                <a href="{% url 'core:logout' %}" class="btn btn-success" type="submit" role="button">Logout</a>
+               {% endif %} 
+          {% else %}
+
+          <form class="d-flex" role="search">
+            <a href="{% url 'core:signup' %}" class="btn btn-success me-2" type="submit" role="button">Signup</a>
+            <a href="{% url 'core:login' %}" class="btn btn-success" type="submit" role="button">Login</a>
+          {% endif %}
+          </form>
+        </div>
+      </nav>
+
+      <div>{% block content %}{% endblock %}</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  </body>
+</html>
